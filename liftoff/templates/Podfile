@@ -1,0 +1,21 @@
+platform :ios, '<%= deployment_target %>'
+inhibit_all_warnings!
+
+# Add Debug pods here
+pod 'dyci', :configurations => ['Debug']
+
+# Add Application pods here
+pod 'CrashlyticsFramework', '~> 2.2.10'
+pod 'CocoaLumberjack', '~> 2.0.0-rc'
+pod "AFNetworking", "~> 2.0"
+pod 'FLEX', '~> 1.1'
+pod 'Masonry', '~> 0.6.1'
+
+# Add Unit test pods here
+target :unit_tests, :exclusive => true do
+  link_with 'UnitTests'
+#  pod 'Specta'
+#  pod 'Expecta'
+#  pod 'OCMock'
+#  pod 'OHHTTPStubs'
+end

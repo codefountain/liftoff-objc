@@ -1,0 +1,105 @@
+############################################################################
+# The following keys can be used to configure defaults for project creation
+# project_name:
+# company:
+# author:
+# prefix:
+# company_identifier:
+############################################################################
+
+company: CodeFountain
+company_identifier: io.codefountain
+configure_git: true
+warnings_as_errors: false
+enable_static_analyzer: true
+indentation_level: 2
+use_tabs: false
+use_cocoapods: true
+strict_prompts: false
+project_template: objc
+
+run_script_phases:
+    - todo.sh: Script - Warn for TODO and FIXME comments
+    - xcres_build.sh: Script - Generate constants file of resources, images, strings etc.
+    - sort-xcode-proj.sh: Script - Sort files in groups alphabetically to avoid merge conflicts
+    - annotate_bundle_icons.sh: Script - Annotate bundle icons with configuration and commit number
+    - objclean.sh: Script - Apply ObjectiveClean style guides
+
+templates:
+    - StyleSettings.plist: StyleSettings.plist
+    - README.md : README.md
+
+warnings:
+    - GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED
+    - GCC_WARN_MISSING_PARENTHESES
+    - GCC_WARN_ABOUT_RETURN_TYPE
+    - GCC_WARN_SIGN_COMPARE
+    - GCC_WARN_CHECK_SWITCH_STATEMENTS
+    - GCC_WARN_UNUSED_FUNCTION
+    - GCC_WARN_UNUSED_LABEL
+    - GCC_WARN_UNUSED_VALUE
+    - GCC_WARN_UNUSED_VARIABLE
+    - GCC_WARN_SHADOW
+    - GCC_WARN_64_TO_32_BIT_CONVERSION
+    - GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS
+    - GCC_WARN_ABOUT_MISSING_NEWLINE
+    - GCC_WARN_UNDECLARED_SELECTOR
+    - GCC_WARN_TYPECHECK_CALLS_TO_PRINTF
+    - GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS
+    - CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS
+    - CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF
+    - CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION
+    - CLANG_WARN_EMPTY_BODY
+    - CLANG_WARN_ENUM_CONVERSION
+    - CLANG_WARN_INT_CONVERSION
+    - CLANG_WARN_CONSTANT_CONVERSION
+
+xcode_command: open -a 'Xcode' .
+
+#project_template: objc
+
+app_target_templates:
+    objc:
+        - <%= project_name %>:
+            - Categories:
+                - CALayer+positioning.h
+                - CALayer+positioning.m
+            - Classes:
+                - Macros.h
+            - Constants:
+            - Controllers:
+            - DataSources:
+            - Delegates:
+                - <%= prefix %>AppDelegate.h
+                - <%= prefix %>AppDelegate.m
+            - Models:
+            - Protocols:
+            - ViewControllers:
+            - Views:
+        - Documentation:
+        - Resources:
+            - Images.xcassets
+            - Nibs:
+              - LaunchScreen.xib
+            - OtherSources:
+                - <%= project_name %>-Info.plist
+                - <%= project_name %>-Prefix.pch
+                - main.m
+                - R.h
+                - R.m
+            - Storyboards:
+                - Main.storyboard
+        - Scripts:
+            - sort-xcode-proj.perl
+            - test.sh
+            - xcres_build.command
+            - annotate_bundle_icons.sh
+            - annotate.sh
+
+test_target_templates:
+    objc:
+        - Tests:
+            - Resources:
+                - UnitTests-Info.plist
+                - UnitTests-Prefix.pch
+            - UnitTests:
